@@ -12,21 +12,17 @@ var compChoice = alphabet[Math.floor(Math.random() * alphabet.length)];
 var addLettersGuessed = function() {  
 	document.querySelector('#lettersGuessed').innerHTML = lettersGuessed.join(', ');
 };
-
 var updateGuessesLeft = function() {
 	document.querySelector('#guessesLeft').innerHTML = guessesLeft;
 };
-
 var updateCompChoice = function() {
 	compChoice = alphabet[Math.floor(Math.random() * alphabet.length)];
 };
-
 var reset = function() {
 	totalGuesses = 9;
 	guessesLeft = 9;
 	lettersGuessed = [];
 	document.querySelector("#lettersGuessed").innerHTML = lettersGuessed;
-
 	updateCompChoice();
 	updateGuessesLeft();
 	addLettersGuessed();
@@ -38,15 +34,12 @@ document.onkeyup = function(event) {
 	var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
 	lettersGuessed.push(userGuess);
 	updateGuessesLeft();
-	addLettersGuessed();
-	
-	if (guessesLeft > 0) {
-		if (userGuess == compChoice) {
-			wins++;
-			document.getElementById("wins").innerHTML = wins;
-			alert("You guessed it!");
-			reset();
-		} 
+	addLettersGuessed();	
+	if (guessesLeft > 0 && userGuess == compChoice) {
+		wins++;
+		document.getElementById("wins").innerHTML = wins;
+		alert("You guessed it!");
+		reset();
 	} else if (guessesLeft == 0) {
         losses++;
         document.querySelector('#losses').innerHTML = losses;
