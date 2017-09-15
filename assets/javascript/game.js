@@ -10,10 +10,10 @@ var compChoice = alphabet[Math.floor(Math.random() * alphabet.length)];
 
 //define functions
 var addLettersGuessed = function() {  
-	document.querySelector('#lettersGuessed').innerHTML = lettersGuessed.join(', ');
+	document.querySelector("#lettersGuessed").innerHTML = lettersGuessed.join(', ');
 };
 var updateGuessesLeft = function() {
-	document.querySelector('#guessesLeft').innerHTML = guessesLeft;
+	document.querySelector("#guessesLeft").innerHTML = guessesLeft;
 };
 var updateCompChoice = function() {
 	compChoice = alphabet[Math.floor(Math.random() * alphabet.length)];
@@ -32,18 +32,25 @@ var reset = function() {
 document.onkeyup = function(event) {
 	guessesLeft--;
 	var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
-	lettersGuessed.push(userGuess);
-	updateGuessesLeft();
-	addLettersGuessed();	
-	if (guessesLeft > 0 && userGuess == compChoice) {
-		wins++;
-		document.getElementById("wins").innerHTML = wins;
-		alert("You guessed it!");
-		reset();
-	} else if (guessesLeft == 0) {
-        losses++;
-        document.querySelector('#losses').innerHTML = losses;
-        alert("You're clearly not a psychic.");
-        reset();
-        }
+	if (event.keyCode > 64 && event.keyCode < 91) {
+		if (lettersGuessed.indexOf(userGuess) != -1 ) {
+			alert("You already guessed that!");
+			guessesLeft++;
+		} else if (userGuess == compChoice) {
+			wins++;
+			document.getElementById("wins").innerHTML = wins;
+			alert("You guessed it!");
+			reset();
+		} else if (guessesLeft == 0) {
+	        losses++;
+	        document.querySelector('#losses').innerHTML = losses;
+	        alert("You're clearly not a psychic.");
+	        reset();
+	    } else {
+	    	lettersGuessed.push(userGuess);
+			updateGuessesLeft();
+			addLettersGuessed();
+	    }
+	}
+
 }

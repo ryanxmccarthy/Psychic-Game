@@ -1,7 +1,8 @@
 body {
 	margin: 15px;
 	background-image: url("../images/crystal_ball.jpg");
-	height: auto;
+	min-height: 680px;
+	background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 	color: #C0C0C0;
@@ -13,8 +14,4 @@ body {
 
 h1 { 
 	font-size: 2em;
-}
-
-#verticalCenter {
-	margin-top: 250px;
 }
